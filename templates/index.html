@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CS495 Web</title>
+</head>
+<body>
+    <form id="lookup-container" action="{{ url_for('results') }}" method="post">
+        <h1>Montana License Lookup</h1>
+        <p>Please provide the following search conditions:</p>
+
+        <label>Desired Output Type:</label>
+
+        <div class="form-radio">
+            <input class="radio-in" type="radio" name="output" value="county" id="county-radio-option">
+            <label class="radio-in" for="county-radio-option">County Only</label>
+        </div>
+
+        <div class="form-radio">
+            <input class="radio-in" type="radio" name="output" value="seat" id="seat-radio-option">
+            <label class="radio-in" for="seat-radio-option">Seat Only</label>
+        </div>
+
+        <div class="form-radio">
+            <input class="radio-in" type="radio" name="output" value="county-seat" id="both-radio-option">
+            <label class="radio-in" for="both-radio-option">Both County and Seat</label>
+        </div>
+
+        <br>
+
+        <label for="prefix">Enter License Prefix:</label>
+        <input type="number" name="prefix" id="prefix">
+
+        <br><br>
+
+        <input type="submit" name="submit" value="Submit">
+
+        <a href="{{ url_for('display_table') }}">Manual Lookup</a>
+    </form>
+</body>
+</html>
