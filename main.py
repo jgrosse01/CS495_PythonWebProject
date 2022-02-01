@@ -9,6 +9,7 @@ Description:    The main python file for this webapp. It manages routing and get
 from flask import Flask, redirect, render_template, request, url_for
 from lookup.Reader import read_csv
 from lookup.Lookup import lookup
+import re
 
 
 # make it webby
@@ -89,8 +90,16 @@ def results():
     wants_county = False
     wants_seat = False
 
-    # get the search key if not invalid input
+    # get the search key
     key = request.form['prefix']
+    # can't figure out regex's so here's a list of characters :)
+    char_list = ['`','~','!','@','#','$','%','^','&','*','(',')','_','-','+','=','\\','[',']','{','}','"',"'",'<','>',\
+                 ':',';','/','.',',','|']
+
+    # strip all the characters
+    for char in char_list:
+        key = key.strip(char)
+
     try:
         # determine whether a search query wants county or seat or both
         wants_county = request.form['output'] == "county" or request.form['output'] == "county-seat"
@@ -104,8 +113,13 @@ def results():
     if key == '':
         return redirect(url_for('no_invalid_input'))
 
-    # after key checks, swap key to int for easier use
-    key = int(key)
+    # make sure it is an integer input, if it is not then except for invalid input type string
+    try:
+        # if it is castable, it will be an int for easier use after this point
+        key = int(key)
+    except:
+        return redirect(url_for('str_invalid_input'))
+
     # get lookup result
     lookup_result = lookup(key, license_dict)
 
