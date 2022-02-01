@@ -93,8 +93,8 @@ def results():
     # get the search key
     key = request.form['prefix']
     # can't figure out regex's so here's a list of characters :)
-    char_list = ['`','~','!','@','#','$','%','^','&','*','(',')','_','-','+','=','\\','[',']','{','}','"',"'",'<','>',\
-                 ':',';','/','.',',','|']
+    char_list = ['`', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '-',
+                 '+', '=', '\\', '[', ']', '{', '}', '"', "'", '<', '>', ':', ';', '/', '.', ',', '|']
 
     # strip all the characters
     for char in char_list:
