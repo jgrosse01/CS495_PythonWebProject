@@ -1,7 +1,8 @@
 """
-Author: Jake Grosse
-Date Created: 31 January 2022
-Description: A helper file used to look up a county and seat city by licence plate key given a dictionary.
+Author:         Jake Grosse
+Date Created:   31 January 2022
+Description:    The main python file for this webapp. It manages routing and gets/posts
+                as well as handling backend processing.
 """
 
 # general imports
@@ -50,9 +51,9 @@ def display_table():
     ret_string = ""
     # header string
     ret_string = ret_string + "<h1>Montana County License Plate Prefix Lookup Table</h1><br>"
-
+    # sub-head string
     ret_string = ret_string + "<h2>Sorted Alphabetically by County of Residence</h2>"
-
+    # return link
     ret_string = ret_string + "<a href=\"/\">Return to Search Page</a><br><br>"
 
     # append initial table row for labels
@@ -64,8 +65,7 @@ def display_table():
     ret_string = ret_string + "</tr>"
 
     # systematically append dictionary items
-    keys = list(license_dict.keys())
-    for key in keys[1:len(keys)]:
+    for key in license_dict.keys():
         ret_string = ret_string + "<tr>"
         ret_string = ret_string + f"<td>{key}</td>"
         ret_string = ret_string + f"<td>{license_dict[key][0]}</td>"
@@ -164,7 +164,9 @@ def results():
     return ret_string
 
 
+# main method, literally just reads in CSV and starts the webserver
 if __name__ == '__main__':
     # load in dictionary from the CSV file (default argument with path)
     license_dict = read_csv()
+    # start app
     app.run(debug=True)
