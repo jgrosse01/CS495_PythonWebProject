@@ -8,5 +8,3 @@ A simple web based project which surpasses the minimum requirements for the CS49
 5. Enjoy
 
 Note: requires python Flask, programmed and compiled on python 3.10
-
-Yes I do realize this fulfills the requirements for Challenge Problem #1; however, I have different plans for that either in the form of implementing AJAX or by doing the project in a programming language which is completely new to me.
